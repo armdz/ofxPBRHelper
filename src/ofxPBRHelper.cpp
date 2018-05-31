@@ -911,6 +911,7 @@ void ofxPBRHelper::addCubeMap(ofxPBRCubeMap * cubeMap, string name)
 	cubeMaps.insert(map<string, pair<ofxPBRCubeMap*, CubeMapParams>>::value_type(name, pair<ofxPBRCubeMap*, CubeMapParams>(cubeMap, CubeMapParams())));
 	cubeMapKeys.push_back(name);
 	setCubeMapsFromJson(name);
+    
 }
 
 void ofxPBRHelper::loadJsonFiles()
