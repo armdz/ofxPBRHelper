@@ -9,12 +9,14 @@
 
 class ofxPBRHelper {
 public:
-	void setup(ofxPBR* pbr, string folderPath, bool enableOtherGui = false);
-	void drawGui();
-	void addLight(ofxPBRLight* light, string name);
-	void addMaterial(ofxPBRMaterial* material, string name);
-	void addCubeMap(ofxPBRCubeMap * cubeMap, string name);
-    ofxJSONElement  getSettings();
+	void    setup(ofxPBR* pbr, string folderPath, bool enableOtherGui = false);
+    void    save();
+	void    drawGui();
+	void    addLight(ofxPBRLight* light, string name);
+	void    addMaterial(ofxPBRMaterial* material, string name);
+	void    addCubeMap(ofxPBRCubeMap * cubeMap, string name);
+    bool    onSave();
+    ofxJSONElement& getSettings();
 
 private:
 	void loadJsonFiles();
@@ -81,4 +83,7 @@ private:
 			items.size(), 
 			height_in_items);
 	};
+    
+    //  save
+    bool    doSave;
 };

@@ -22,6 +22,7 @@ void ofxPBRHelper::setup(ofxPBR * pbr, string folderPath, bool enableOtherGui)
         currentJsonIndex = -1;
     }
 	textureLoaded = false;
+    doSave = false;
 }
 
 void ofxPBRHelper::drawGui()
@@ -42,11 +43,14 @@ void ofxPBRHelper::drawGui()
         
         if(ImGui::CollapsingHeader("General")){
             if (ImGui::Button("save")) {
+                doSave = true;
                 if (settings.isNull() == true && currentJsonIndex == -1) {
                     ImGui::OpenPopup("Save As ...");
                 }else{
                     saveJson(jsonFiles[currentJsonIndex]);
                 }
+            }else{
+                doSave = false;
             }
             ImGui::SameLine();
             if (ImGui::Button("save as...")) {
@@ -1024,7 +1028,7 @@ void ofxPBRHelper::saveJson(string fileName)
 	}
 	settings["light"] = lightJson;
 
-	settings.save(folderPath + "/" + fileName + ".json");
+	settings.save(folderPath + "/" + fileName + ".json",true);
 }
 
 void ofxPBRHelper::setMaterialsFromJson(string materialName)
@@ -1247,8 +1251,19 @@ void ofxPBRHelper::setPBRFromJson()
 	pbr->resizeDepthMap(pbrParams.shadowMapRes);
 }
 
-ofxJSONElement  ofxPBRHelper::getSettings()
+ofxJSONElement&  ofxPBRHelper::getSettings()
 {
     return settings;
+}
+
+bool    ofxPBRHelper::onSave()
+{
+    return doSave;
+}
+
+void    ofxPBRHelper::save()
+{
+    if(currentJsonIndex != -1)
+        saveJson(jsonFiles[currentJsonIndex]);
 }
 
