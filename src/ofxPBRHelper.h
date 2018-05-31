@@ -14,6 +14,7 @@ public:
 	void addLight(ofxPBRLight* light, string name);
 	void addMaterial(ofxPBRMaterial* material, string name);
 	void addCubeMap(ofxPBRCubeMap * cubeMap, string name);
+    ofxJSONElement  getSettings();
 
 private:
 	void loadJsonFiles();
@@ -23,7 +24,7 @@ private:
 	void setCubeMapsFromJson(string cubeMapName);
 	void setPBRFromJson();
 
-	ofxImGui gui;
+    ofxImGui::Gui gui;
     bool enableOtherGui;
 	ofxJSONElement settings;
 	ofxPBR* pbr;

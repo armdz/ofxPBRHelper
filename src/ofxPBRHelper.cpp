@@ -1246,3 +1246,9 @@ void ofxPBRHelper::setPBRFromJson()
     pbr->enableCubeMap(pbrParams.enableCubeMap);
 	pbr->resizeDepthMap(pbrParams.shadowMapRes);
 }
+
+ofxJSONElement  ofxPBRHelper::getSettings()
+{
+    return settings;
+}
+
