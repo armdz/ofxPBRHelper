@@ -150,7 +150,7 @@ void ofxPBRHelper::drawGui()
                     ofDisableArbTex();
                     ofxPBRImage img;
                     img.load(currentPanoramaFile.getAbsolutePath());
-                    img.resize(512, 256);
+                    img.resize(512*2.0, 256*2.0);
                     img.saveImage(files->getPath() + "/panoramas_small/" + currentPanoramaFile.getFileName());
                     ofTexture* texture = new ofTexture();
                     *texture = img.getTexture();
